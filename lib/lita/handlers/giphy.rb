@@ -12,7 +12,11 @@ module Lita
         "giphy QUERY" => "Grabs a gif tagged with QUERY."
       })
 
-      route(/^(\W|^)((sad)|(\:\())(\W|$)/i, :giphy_sad, command: true, help: {
+      route(/(\W|^)((sad)|(\:\())(\W|$)/i, :giphy_sad, command: true, help: {
+        ":( or sad" => "Grabs a gif to cheer you up."
+      })
+
+      route(/(\W|^)(haha|lol|rofl)(\W|$)/i, :giphy_lol, command: true, help: {
         ":( or sad" => "Grabs a gif to cheer you up."
       })
 
@@ -28,6 +32,12 @@ module Lita
         return unless validate(response)
 
         response.reply get_gif("be happy")
+      end
+
+      def giphy_lol(response)
+        return unless validate(response)
+
+        response.reply get_gif("lol")
       end
 
       private

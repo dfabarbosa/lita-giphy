@@ -12,12 +12,22 @@ module Lita
         "giphy QUERY" => "Grabs a gif tagged with QUERY."
       })
 
+      route(/^(\W|^)((sad)|(\:\())(\W|$)/i, :giphy_sad, command: true, help: {
+        ":( or sad" => "Grabs a gif to cheer you up."
+      })
+
 
       def giphy(response)
         return unless validate(response)
 
         query = response.matches[0][0]
         response.reply get_gif(query)
+      end
+
+      def giphy_sad(response)
+        return unless validate(response)
+
+        response.reply get_gif("be happy")
       end
 
       private

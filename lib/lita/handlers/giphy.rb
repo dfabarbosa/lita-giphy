@@ -20,8 +20,12 @@ module Lita
         "haha, lol or rofl" => "Grabs a gif to cheer you up more."
       })
 
-      route(/(\W|^)(cansado|cansada|tired|sleep|sleepy)(\W|$)/i, :giphy_lol, command: false, help: {
-        "cansado, cansado, tired, sleep or sleepy" => "Grabs a gif to show you a sloth."
+      route(/(\W|^)(cansado|cansada|tired|sloth|sleep|sleepy)(\W|$)/i, :giphy_sloth, command: false, help: {
+        "cansado, cansado, tired, sloth, sleep or sleepy" => "Grabs a gif to show you a sloth."
+      })
+
+      route(/(\W|^)(deal with it)(\W|$)/i, :giphy_deal, command: false, help: {
+        "deal with it" => "Grabs a gif to deal with it."
       })
 
 
@@ -35,6 +39,11 @@ module Lita
       def giphy_sad(response)
         return unless validate(response)
         response.reply get_gif("be happy")
+      end
+
+      def giphy_deal(response)
+        return unless validate(response)
+        response.reply get_gif("deal with it")
       end
 
       def giphy_lol(response)

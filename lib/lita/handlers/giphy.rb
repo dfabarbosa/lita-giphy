@@ -12,7 +12,7 @@ module Lita
         "giphy QUERY" => "Grabs a gif tagged with QUERY."
       })
 
-      route(/(\W|^)((sad)|(\:\())(\W|$)/i, :giphy_sad, command: true, help: {
+      route(/(\W|^)((sad)|(:disappointed:))(\W|$)/i, :giphy_sad, command: true, help: {
         ":( or sad" => "Grabs a gif to cheer you up."
       })
 

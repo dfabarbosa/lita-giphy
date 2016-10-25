@@ -12,12 +12,16 @@ module Lita
         "giphy QUERY" => "Grabs a gif tagged with QUERY."
       })
 
-      route(/(\W|^)((sad)|(:disappointed:))(\W|$)/i, :giphy_sad, command: false, help: {
+      route(/(\W|^)((sad)|(:disappointed:)|(:cry:))(\W|$)/i, :giphy_sad, command: false, help: {
         ":( or sad" => "Grabs a gif to cheer you up."
       })
 
-      route(/(\W|^)(haha|lol|rofl)(\W|$)/i, :giphy_lol, command: false, help: {
-        ":( or sad" => "Grabs a gif to cheer you up."
+      route(/(\W|^)(((haha)(ha)*)|lol|rofl|:joy:|:laughing:)(\W|$)/i, :giphy_lol, command: false, help: {
+        "haha, lol or rofl" => "Grabs a gif to cheer you up more."
+      })
+
+      route(/(\W|^)(cansado|cansada|tired|sleep|sleepy)(\W|$)/i, :giphy_lol, command: false, help: {
+        "cansado, cansado, tired, sleep or sleepy" => "Grabs a gif to show you a sloth."
       })
 
 
@@ -30,14 +34,21 @@ module Lita
 
       def giphy_sad(response)
         return unless validate(response)
-
         response.reply get_gif("be happy")
       end
 
       def giphy_lol(response)
         return unless validate(response)
+        probability = 40
+        random_chance = rand(100)
+        response.reply get_gif("lol") if (random_chance < probability)
+      end
 
-        response.reply get_gif("lol")
+      def giphy_sloth(response)
+        return unless validate(response)
+        probability = 50
+        random_chance = rand(100)
+        response.reply get_gif("sloth") if (random_chance < probability)
       end
 
       private

@@ -83,6 +83,10 @@ module Lita
       def process_response(http_response, query)
         data = MultiJson.load(http_response.body)
 
+        puts "****************************************"
+        puts data
+        puts "****************************************"
+
         if data["meta"]["status"] == 200
           choice = data["data"].sample
           if choice.nil?
